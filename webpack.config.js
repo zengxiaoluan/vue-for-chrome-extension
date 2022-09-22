@@ -1,7 +1,7 @@
-const CopyPlugin = require("copy-webpack-plugin");
-const { VueLoaderPlugin } = require("vue-loader");
+const CopyPlugin = require('copy-webpack-plugin');
+const {VueLoaderPlugin} = require('vue-loader');
 
-const path = require("path");
+const path = require('path');
 
 function getPath(file) {
   return path.resolve(__dirname, file);
@@ -13,18 +13,18 @@ function fn() {
   };
 
   config.entry = {
-    popup: getPath("./src/popup.ts"),
+    popup: getPath('./src/popup.ts'),
   };
 
   config.output = {
-    path: getPath("./dist"),
-    filename: "[name].js",
+    path: getPath('./dist'),
+    filename: '[name].js',
   };
 
   config.resolve = {
-    extensions: [".js", ".ts"],
+    extensions: ['.js', '.ts'],
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   };
 
@@ -32,31 +32,31 @@ function fn() {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: "esbuild-loader",
+        loader: 'esbuild-loader',
         options: {
-          loader: "tsx",
-          target: "es2015",
-          jsxFactory: "h",
-          jsxFragment: "Fragment",
+          loader: 'tsx',
+          target: 'es2015',
+          jsxFactory: 'h',
+          jsxFragment: 'Fragment',
         },
       },
 
       {
         test: /\.vue$/,
-        loader: "vue-loader",
+        loader: 'vue-loader',
       },
 
       {
         test: /\.css$/,
-        use: ["vue-style-loader", "css-loader"],
+        use: ['vue-style-loader', 'css-loader'],
       },
     ],
   };
 
   config.plugins = [
     new CopyPlugin({
-      patterns: ["a.txt", "popup.html"].map((item) => {
-        return { from: getPath("./src/" + item), to: "./" };
+      patterns: ['a.txt', 'popup.html'].map((item) => {
+        return {from: getPath('./src/' + item), to: './'};
       }),
     }),
     new VueLoaderPlugin(),
