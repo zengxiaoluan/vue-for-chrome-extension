@@ -7,6 +7,16 @@
 
 <script lang="ts">
 import Tsx from './tsx.vue';
+
+import { defineComponent } from 'vue'
+
+defineComponent({
+  data() {
+    return { a: 1 }
+  }
+})
+
+
 export default {
   data() {
     let a: string = 'zzzzzzzzzzzz';
